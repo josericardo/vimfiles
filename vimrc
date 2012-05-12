@@ -16,10 +16,9 @@ set incsearch
 set hlsearch
 " make searches case-sensitive only if they contain upper-case characters
 set ignorecase smartcase
-" highlight current line
-set cmdheight=2
 set switchbuf=useopen
 set numberwidth=5
+set number
 set showtabline=2
 set winwidth=79
 set shell=bash
@@ -50,6 +49,7 @@ let mapleader=","
 
 " tell vim to use the rspec compiler for all *_spec.rb files by adding this line to your vimrc
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
+autocmd BufNewFile,BufRead *_spec.rb setl makeprg=rspec
 
 " Move around splits with <c-hjkl>
 nnoremap <c-j> <c-w>j
@@ -101,3 +101,6 @@ map <leader>n :call RenameFile()<cr>
 " FuzzyFinder mappings
 map <c-p> :FufFile<cr>
 
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+
+map ,, <C-^>
