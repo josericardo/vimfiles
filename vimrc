@@ -13,7 +13,11 @@ set autoindent
 set laststatus=2
 set showmatch
 set incsearch
+
+" removes the highlight of the previous search
 set hlsearch
+:map ,/ :nohlsearch<cr>
+
 " make searches case-sensitive only if they contain upper-case characters
 set ignorecase smartcase
 set switchbuf=useopen
