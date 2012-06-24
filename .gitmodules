@@ -7,3 +7,6 @@
 [submodule "bundle/unimpaired"]
 	path = bundle/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "bundle/kwbd"]
+	path = bundle/kwbd
+	url = https://github.com/rgarver/Kwbd.vim.git
