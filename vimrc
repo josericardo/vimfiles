@@ -119,3 +119,7 @@ vmap <C-Up> [egv
 vmap <C-Down> ]egv
 
 au BufWritePost .vimrc so ~/.vimrc
+
+let g:ctrlp_arg_map = 1
+
+nmap <C-W>! <Plug>Kwbd
