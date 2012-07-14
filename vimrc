@@ -102,9 +102,6 @@ function! RenameFile()
 endfunction
 map <leader>n :call RenameFile()<cr>
 
-" FuzzyFinder mappings
-map <c-p> :FufFile<cr>
-
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " reopens the last buffer
