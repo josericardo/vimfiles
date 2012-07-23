@@ -52,9 +52,10 @@ let mapleader=","
 :set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 
 " tell vim to use the rspec compiler for all *_spec.rb files by adding this line to your vimrc
-autocmd BufNewFile,BufRead *_spec.rb compiler rspec
-autocmd BufNewFile,BufRead *_spec.rb setl makeprg=rspec
-autocmd BufNewFile,BufRead *_spec.rb map ,t :w!<cr>:!rspec %<cr>
+au BufNewFile,BufRead *_spec.rb compiler rspec
+au BufNewFile,BufRead *_spec.rb setl makeprg=rspec
+au BufNewFile,BufRead *.rb map <buffer> <Leader>t :w!<cr>:!rspec %:r_spec.rb<cr>
+au BufNewFile,BufRead *_spec.rb map <buffer> <Leader>t :w!<cr>:!rspec %<cr>
 
 " Move around splits with <c-hjkl>
 nnoremap <c-j> <c-w>j
