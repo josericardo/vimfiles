@@ -54,8 +54,8 @@ let mapleader=","
 " tell vim to use the rspec compiler for all *_spec.rb files by adding this line to your vimrc
 au BufNewFile,BufRead *_spec.rb compiler rspec
 au BufNewFile,BufRead *_spec.rb setl makeprg=rspec
-au BufNewFile,BufRead *.rb map <buffer> <Leader>t :w!<cr>:!rspec %:r_spec.rb<cr>
-au BufNewFile,BufRead *_spec.rb map <buffer> <Leader>t :w!<cr>:!rspec %<cr>
+au BufNewFile,BufRead *_spec.rb map ,t :w!<cr>:!rspec %<cr>
+au BufNewFile,BufRead *.rb map ,t :w!<cr>:!rspec %:r_spec.rb<cr>
 
 " Move around splits with <c-hjkl>
 nnoremap <c-j> <c-w>j
@@ -145,3 +145,16 @@ imap <C-8> <Esc>8gt
 map <C-9> 9gt
 imap <C-9> <Esc>9gt
 
+set viminfo='10,\"100,:20,%,n~/.viminfo
+
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END
