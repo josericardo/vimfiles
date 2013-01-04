@@ -145,7 +145,7 @@ imap <C-8> <Esc>8gt
 map <C-9> 9gt
 imap <C-9> <Esc>9gt
 
-set viminfo='10,\"100,:20,%,n~/.viminfo
+set viminfo='100,\"100,:20,%,n~/.viminfo
 
 function! ResCur()
   if line("'\"") <= line("$")
