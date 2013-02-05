@@ -56,6 +56,7 @@ au BufNewFile,BufRead *_spec.rb compiler rspec
 au BufNewFile,BufRead *_spec.rb setl makeprg=rspec
 au BufNewFile,BufRead *_spec.rb map ,t :w!<cr>:!rspec %<cr>
 au BufNewFile,BufRead *.rb map ,t :w!<cr>:!rspec %:r_spec.rb<cr>
+au BufNewFile,BufRead *.py map <Leader>t :w!<cr>:!nosetests<cr>
 
 " Move around splits with <c-hjkl>
 nnoremap <c-j> <c-w>j
