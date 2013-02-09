@@ -159,3 +159,6 @@ augroup resCur
   autocmd!
   autocmd BufWinEnter * call ResCur()
 augroup END
+
+nnoremap <Leader>sv :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
+nnoremap <Leader>ss :%s/\<<C-r><C-w>\>/<C-r><C-w>/gc<Left><Left><Left>
