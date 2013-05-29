@@ -162,3 +162,10 @@ augroup END
 
 nnoremap <Leader>sv :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 nnoremap <Leader>ss :%s/\<<C-r><C-w>\>/<C-r><C-w>/gc<Left><Left><Left>
+
+let g:ctrlp_working_path_mode = 0
+
+" PYTHON
+autocmd BufWritePre *.py normal m`:%s/\s\+$//e
+au FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
+autocmd BufWritePost *.py call Flake8()
