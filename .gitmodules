@@ -13,3 +13,9 @@
 [submodule "bundle/vim-ruby-doc"]
 	path = bundle/vim-ruby-doc
 	url = https://github.com/lucapette/vim-ruby-doc.git
+[submodule "bundle/gitgutter"]
+	path = bundle/gitgutter
+	url = git://github.com/airblade/vim-gitgutter.git
+[submodule "bundle/vim-flake8"]
+	path = bundle/vim-flake8
+	url = https://github.com/nvie/vim-flake8
