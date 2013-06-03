@@ -1,5 +1,7 @@
 call pathogen#infect()
 
+colorscheme elflord
+
 set nocompatible
 " allow unsaved background buffers and remember marks/undo for them
 set hidden
