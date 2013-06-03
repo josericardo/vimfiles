@@ -171,5 +171,6 @@ let g:ctrlp_working_path_mode = 0
 autocmd BufWritePre *.py normal m`:%s/\s\+$//e
 au FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
 autocmd BufWritePost *.py call Flake8()
+let g:flake8_max_line_length=120
 
 nmap <leader>a <Esc>:Ack!
