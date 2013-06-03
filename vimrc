@@ -174,3 +174,16 @@ autocmd BufWritePost *.py call Flake8()
 let g:flake8_max_line_length=120
 
 nmap <leader>a <Esc>:Ack!
+
+" Some stuff stolen from aurelio:
+" http://aurelio.net/doc/dotfiles/vimrc.txt
+
+" Close everything!
+imap <F11> <esc>:wqa!<cr>
+map <F11> :wqa!<cr>
+
+" Keeping myself sane
+cab W w| cab Q q| cab Wq wq| cab wQ wq| cab WQ wq
+
+" Show trailing white space
+au BufNewFile,BufRead * syn match brancomala '\s\+$' | hi brancomala ctermbg=red
