@@ -37,3 +37,6 @@
 [submodule "bundle/vim-ruby-xmpfilter"]
 	path = bundle/vim-ruby-xmpfilter
 	url = https://github.com/t9md/vim-ruby-xmpfilter.git
+[submodule "bundle/snipmate.vim"]
+	path = bundle/snipmate.vim
+	url = https://github.com/msanders/snipmate.vim.git
