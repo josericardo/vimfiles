@@ -75,7 +75,6 @@ au BufNewFile,BufRead *.rb nmap <buffer> <F4> <Plug>(xmpfilter-mark)
 au BufNewFile,BufRead *.rb xmap <buffer> <F4> <Plug>(xmpfilter-mark)
 au BufNewFile,BufRead *.rb imap <buffer> <F4> <Plug>(xmpfilter-mark)
 
-
 "=====================
 " End of Ruby Goodness
 "=====================
@@ -207,3 +206,8 @@ cab W w| cab Q q| cab Wq wq| cab wQ wq| cab WQ wq
 
 " Show trailing white space
 au BufNewFile,BufRead * syn match brancomala '\s\+$' | hi brancomala ctermbg=red
+
+" OCTAVE
+au BufNewFile,BufRead *.m map <Leader>r :w!<cr>:!octave %<cr>
+au BufNewFile,BufRead *.m map <Leader>o :!octave<cr>
+
