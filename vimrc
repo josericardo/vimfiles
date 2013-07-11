@@ -210,4 +210,5 @@ au BufNewFile,BufRead * syn match brancomala '\s\+$' | hi brancomala ctermbg=red
 " OCTAVE
 au BufNewFile,BufRead *.m map <Leader>r :w!<cr>:!octave %<cr>
 au BufNewFile,BufRead *.m map <Leader>o :!octave<cr>
+au BufNewFile,BufRead *.m map <Leader>e :!octave --eval 
 
