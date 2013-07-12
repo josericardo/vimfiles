@@ -192,6 +192,10 @@ au FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
 autocmd BufWritePost *.py call Flake8()
 let g:flake8_max_line_length=120
 
+au BufNewFile,BufRead *.py map <Leader>r :w!<cr>:!ipython %<cr>
+au BufNewFile,BufRead *.py map <Leader>e :w!<cr>:!python -c 
+au BufNewFile,BufRead *.py map <Leader>i :w!<cr>:!ipython<cr>
+
 nmap <leader>a <Esc>:Ack!
 
 " Some stuff stolen from aurelio:
@@ -209,6 +213,6 @@ au BufNewFile,BufRead * syn match brancomala '\s\+$' | hi brancomala ctermbg=red
 
 " OCTAVE
 au BufNewFile,BufRead *.m map <Leader>r :w!<cr>:!octave %<cr>
-au BufNewFile,BufRead *.m map <Leader>o :!octave<cr>
+au BufNewFile,BufRead *.m map <Leader>i :!octave<cr>
 au BufNewFile,BufRead *.m map <Leader>e :!octave --eval 
 
