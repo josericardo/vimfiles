@@ -192,7 +192,7 @@ au FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
 autocmd BufWritePost *.py call Flake8()
 let g:flake8_max_line_length=120
 
-au BufNewFile,BufRead *.py map <Leader>r :w!<cr>:!ipython %<cr>
+au BufNewFile,BufRead *.py map <Leader>r :w!<cr>:!python %<cr>
 au BufNewFile,BufRead *.py map <Leader>e :w!<cr>:!python -c 
 au BufNewFile,BufRead *.py map <Leader>i :w!<cr>:!ipython<cr>
 
