@@ -53,31 +53,6 @@ let mapleader=","
 " status line
 :set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 
-au BufNewFile,BufRead *.py map <Leader>t :w!<cr>:!nosetests<cr>
-
-" ================
-" Ruby Goodness
-" ================
-
-" tell vim to use the rspec compiler for all *_spec.rb files by adding this line to your vimrc
-au BufNewFile,BufRead *_spec.rb compiler rspec
-au BufNewFile,BufRead *_spec.rb setl makeprg=rspec
-au BufNewFile,BufRead *_spec.rb map <Leader>t :w!<cr>:!rspec %<cr>
-au BufNewFile,BufRead *.rb map <Leader>r :w!<cr>:!bundle exec ruby %<cr>
-au BufNewFile,BufRead *.rb map <Leader>outline :!grep 'class\\|def' %<cr>
-
-" XMPFILTER https://github.com/t9md/vim-ruby-xmpfilter
-au BufNewFile,BufRead *.rb nmap <buffer> <F5> <Plug>(xmpfilter-run)
-au BufNewFile,BufRead *.rb xmap <buffer> <F5> <Plug>(xmpfilter-run)
-au BufNewFile,BufRead *.rb imap <buffer> <F5> <Plug>(xmpfilter-run)
-
-au BufNewFile,BufRead *.rb nmap <buffer> <F4> <Plug>(xmpfilter-mark)
-au BufNewFile,BufRead *.rb xmap <buffer> <F4> <Plug>(xmpfilter-mark)
-au BufNewFile,BufRead *.rb imap <buffer> <F4> <Plug>(xmpfilter-mark)
-
-"=====================
-" End of Ruby Goodness
-"=====================
 
 " Move around splits with <c-hjkl>
 nnoremap <c-j> <c-w>j
@@ -192,9 +167,38 @@ au FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
 autocmd BufWritePost *.py call Flake8()
 let g:flake8_max_line_length=120
 
+" My universal IDE :D
 au BufNewFile,BufRead *.py map <Leader>r :w!<cr>:!python %<cr>
-au BufNewFile,BufRead *.py map <Leader>e :w!<cr>:!python -c 
 au BufNewFile,BufRead *.py map <Leader>i :w!<cr>:!ipython<cr>
+au BufNewFile,BufRead *.py map <Leader>e :w!<cr>:!python -c 
+au BufNewFile,BufRead *.py map <Leader>t :w!<cr>:!nosetests<cr>
+
+au BufNewFile,BufRead *.m map <Leader>r :w!<cr>:!octave %<cr>
+au BufNewFile,BufRead *.m map <Leader>i :!octave<cr>
+au BufNewFile,BufRead *.m map <Leader>e :!octave --eval 
+
+" tell vim to use the rspec compiler for all *_spec.rb files by adding this line to your vimrc
+au BufNewFile,BufRead *.rb map <Leader>r :w!<cr>:!bundle exec ruby %<cr>
+au BufNewFile,BufRead *.rb map <Leader>i :!pry<cr>
+
+au BufNewFile,BufRead *_spec.rb map <Leader>t :w!<cr>:!rspec %<cr>
+au BufNewFile,BufRead *_spec.rb compiler rspec
+au BufNewFile,BufRead *_spec.rb setl makeprg=rspec
+
+au BufNewFile,BufRead *.py,*.rb map <Leader>out :!grep 'class\\|def' %<cr>
+
+" XMPFILTER https://github.com/t9md/vim-ruby-xmpfilter
+au BufNewFile,BufRead *.rb nmap <buffer> <F5> <Plug>(xmpfilter-run)
+au BufNewFile,BufRead *.rb xmap <buffer> <F5> <Plug>(xmpfilter-run)
+au BufNewFile,BufRead *.rb imap <buffer> <F5> <Plug>(xmpfilter-run)
+
+au BufNewFile,BufRead *.rb nmap <buffer> <F4> <Plug>(xmpfilter-mark)
+au BufNewFile,BufRead *.rb xmap <buffer> <F4> <Plug>(xmpfilter-mark)
+au BufNewFile,BufRead *.rb imap <buffer> <F4> <Plug>(xmpfilter-mark)
+
+"=====================
+" End of Ruby Goodness
+"=====================
 
 nmap <leader>a <Esc>:Ack!
 
@@ -211,8 +215,4 @@ cab W w| cab Q q| cab Wq wq| cab wQ wq| cab WQ wq
 " Show trailing white space
 au BufNewFile,BufRead * syn match brancomala '\s\+$' | hi brancomala ctermbg=red
 
-" OCTAVE
-au BufNewFile,BufRead *.m map <Leader>r :w!<cr>:!octave %<cr>
-au BufNewFile,BufRead *.m map <Leader>i :!octave<cr>
-au BufNewFile,BufRead *.m map <Leader>e :!octave --eval 
 
