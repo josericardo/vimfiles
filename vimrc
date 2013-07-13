@@ -1,8 +1,17 @@
 call pathogen#infect()
 
-colorscheme elflord
+filetype off                   " required!
 
-set nocompatible
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle (required!)
+Bundle 'gmarik/vundle'
+Bundle 'christoomey/vim-tmux-navigator'
+
+colorscheme elflord
+set nocompatible " be improved
+
 " allow unsaved background buffers and remember marks/undo for them
 set hidden
 " remember more commands and search history
