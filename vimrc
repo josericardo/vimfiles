@@ -25,6 +25,10 @@ set laststatus=2
 set showmatch
 set incsearch
 
+" splitting more naturally
+set splitbelow
+set splitright
+
 " removes the highlight of the previous search
 set hlsearch
 :map ,/ :nohlsearch<cr>
