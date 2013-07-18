@@ -189,12 +189,14 @@ au BufNewFile,BufRead *.py map <Leader>t :w!<cr>:!nosetests<cr>
 au BufNewFile,BufRead *.m map <Leader>r :w!<cr>:!octave %<cr>
 au BufNewFile,BufRead *.m map <Leader>i :!octave<cr>
 au BufNewFile,BufRead *.m map <Leader>e :!octave --eval 
+au BufNewFile,BufRead *.m map <Leader>t :w!<cr>:!octave --eval 'test %'<cr>
 
-" tell vim to use the rspec compiler for all *_spec.rb files by adding this line to your vimrc
 au BufNewFile,BufRead *.rb map <Leader>r :w!<cr>:!bundle exec ruby %<cr>
 au BufNewFile,BufRead *.rb map <Leader>i :!pry<cr>
 
 au BufNewFile,BufRead *_spec.rb map <Leader>t :w!<cr>:!rspec %<cr>
+"
+" tell vim to use the rspec compiler for all *_spec.rb files by adding this line to your vimrc
 au BufNewFile,BufRead *_spec.rb compiler rspec
 au BufNewFile,BufRead *_spec.rb setl makeprg=rspec
 
