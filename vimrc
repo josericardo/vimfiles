@@ -202,7 +202,7 @@ au BufNewFile,BufRead *_spec.rb map <Leader>t :w!<cr>:!rspec %<cr>
 au BufNewFile,BufRead *_spec.rb compiler rspec
 au BufNewFile,BufRead *_spec.rb setl makeprg=rspec
 
-au BufNewFile,BufRead *.py,*.rb map <Leader>out :!grep -w 'class\\|def' %<cr>
+au BufNewFile,BufRead *.py,*.rb map <Leader>out :!grep -w '^[ ]*class\\|^[ ]*def' %<cr>
 
 " XMPFILTER https://github.com/t9md/vim-ruby-xmpfilter
 au BufNewFile,BufRead *.rb nmap <buffer> <F5> <Plug>(xmpfilter-run)
