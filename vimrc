@@ -183,6 +183,7 @@ let g:flake8_max_line_length=120
 " My universal IDE :D
 au BufNewFile,BufRead *.py map <Leader>r :w!<cr>:!python %<cr>
 au BufNewFile,BufRead *.py map <Leader>ri :w!<cr>:!ipython -i %<cr>
+au BufNewFile,BufRead *.py map <Leader>rl :w!<cr>:!ipython --pylab -i %<cr>
 au BufNewFile,BufRead *.py map <Leader>i :w!<cr>:!ipython<cr>
 au BufNewFile,BufRead *.py map <Leader>e :w!<cr>:!python -c 
 au BufNewFile,BufRead *.py map <Leader>t :w!<cr>:!nosetests<cr>
