@@ -73,6 +73,9 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
+" Zooms current split
+nnoremap <Leader>max :wincmd _ \| wincmd <bar><CR>
+
 " Clear the search buffer when hitting return
 :nnoremap <CR> :nohlsearch<cr>
 
@@ -195,8 +198,10 @@ au BufNewFile,BufRead *.m map <Leader>t :w!<cr>:!octave --eval 'test %'<cr>
 
 au BufNewFile,BufRead *.rb map <Leader>r :w!<cr>:!bundle exec ruby %<cr>
 au BufNewFile,BufRead *.rb map <Leader>i :!pry<cr>
-
 au BufNewFile,BufRead *_spec.rb map <Leader>t :w!<cr>:!rspec %<cr>
+
+au BufNewFile,BufRead *.scm map <Leader>r :w!<cr>:!scheme < %<cr>
+au BufNewFile,BufRead *.scm map <Leader>i :!scheme<cr>
 "
 " tell vim to use the rspec compiler for all *_spec.rb files by adding this line to your vimrc
 au BufNewFile,BufRead *_spec.rb compiler rspec
@@ -213,10 +218,6 @@ au BufNewFile,BufRead *.rb nmap <buffer> <F4> <Plug>(xmpfilter-mark)
 au BufNewFile,BufRead *.rb xmap <buffer> <F4> <Plug>(xmpfilter-mark)
 au BufNewFile,BufRead *.rb imap <buffer> <F4> <Plug>(xmpfilter-mark)
 
-"=====================
-" End of Ruby Goodness
-"=====================
-
 nmap <leader>a <Esc>:Ack!
 
 " Some stuff stolen from aurelio:
@@ -231,5 +232,3 @@ cab W w| cab Q q| cab Wq wq| cab wQ wq| cab WQ wq
 
 " Show trailing white space
 au BufNewFile,BufRead * syn match brancomala '\s\+$' | hi brancomala ctermbg=red
-
-
