@@ -258,3 +258,5 @@ function! s:RunShellCommand(cmdline)
   setlocal nomodifiable
   1
 endfunction
+
+map <leader>spell :set spell! spell?<CR>
