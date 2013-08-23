@@ -180,8 +180,8 @@ let g:ctrlp_working_path_mode = 0
 " PYTHON
 autocmd BufWritePre *.py normal m`:%s/\s\+$//e
 au FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
-autocmd BufWritePost *.py call Flake8()
-let g:flake8_max_line_length=120
+"autocmd BufWritePost *.py call Flake8()
+let g:flake8_max_line_length=110
 
 " My universal IDE :D
 au BufNewFile,BufRead *.py map <Leader>r :w!<cr>:!python %<cr>
@@ -196,7 +196,8 @@ au BufNewFile,BufRead *.m map <Leader>i :!octave<cr>
 au BufNewFile,BufRead *.m map <Leader>e :!octave --eval 
 au BufNewFile,BufRead *.m map <Leader>t :w!<cr>:!octave --eval 'test %'<cr>
 
-au BufNewFile,BufRead *.rb map <Leader>r :w!<cr>:!bundle exec ruby %<cr>
+au BufNewFile,BufRead *.rb map <Leader>r :w!<cr>:!ruby %<cr>
+au BufNewFile,BufRead *.rb map <Leader>b :w!<cr>:!bundle exec ruby %<cr>
 au BufNewFile,BufRead *.rb map <Leader>i :!pry<cr>
 au BufNewFile,BufRead *_spec.rb map <Leader>t :w!<cr>:!rspec %<cr>
 
@@ -232,3 +233,25 @@ cab W w| cab Q q| cab Wq wq| cab wQ wq| cab WQ wq
 
 " Show trailing white space
 au BufNewFile,BufRead * syn match brancomala '\s\+$' | hi brancomala ctermbg=red
+
+" :Shell runs and command and puts its output in a new buffer
+" http://vim.wikia.com/wiki/Display_output_of_shell_commands_in_new_window
+command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
+function! s:RunShellCommand(cmdline)
+  echo a:cmdline
+  let expanded_cmdline = a:cmdline
+  for part in split(a:cmdline, ' ')
+     if part[0] =~ '\v[%#<]'
+        let expanded_part = fnameescape(expand(part))
+        let expanded_cmdline = substitute(expanded_cmdline, part, expanded_part, '')
+     endif
+  endfor
+  botright new
+  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+  call setline(1, 'You entered:    ' . a:cmdline)
+  call setline(2, 'Expanded Form:  ' .expanded_cmdline)
+  call setline(3,substitute(getline(2),'.','=','g'))
+  execute '$read !'. expanded_cmdline
+  setlocal nomodifiable
+  1
+endfunction
