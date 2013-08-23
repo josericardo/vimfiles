@@ -190,6 +190,9 @@ au BufNewFile,BufRead *.py map <Leader>rl :w!<cr>:!ipython --pylab -i %<cr>
 au BufNewFile,BufRead *.py map <Leader>i :w!<cr>:!ipython<cr>
 au BufNewFile,BufRead *.py map <Leader>e :w!<cr>:!python -c 
 au BufNewFile,BufRead *.py map <Leader>t :w!<cr>:!nosetests<cr>
+au BufNewFile,BufRead *.py map <Leader>pl :w!<cr>:Shell pylint %<cr>
+" Just looking for errors
+au BufNewFile,BufRead *.py map <Leader>pe :w!<cr>:Shell pylint -E %<cr> 
 
 au BufNewFile,BufRead *.m map <Leader>r :w!<cr>:!octave %<cr>
 au BufNewFile,BufRead *.m map <Leader>i :!octave<cr>
