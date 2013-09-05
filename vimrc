@@ -206,8 +206,8 @@ au BufNewFile,BufRead *_spec.rb map <Leader>t :w!<cr>:!rspec %<cr>
 au BufNewFile,BufRead *.rb map <Leader>smell :Shell reek %<cr>
 
 " shortcuts to all project files
-" all syntax
-au BufNewFile,BufRead *.rb map <Leader>as :!find . -iname *.rb -exec ruby -c {} \;<cr>
+" all syntaxb
+au BufNewFile,BufRead *.rb map <Leader>as :!for f in `ack -f --ruby`; do ruby -c $f; done<cr>
 
 au BufNewFile,BufRead *.scm map <Leader>r :w!<cr>:!scheme < %<cr>
 au BufNewFile,BufRead *.scm map <Leader>i :!scheme<cr>
