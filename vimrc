@@ -264,4 +264,6 @@ function! s:RunShellCommand(cmdline)
   1
 endfunction
 
+map <leader>gac :Gwrite<CR> <bar> :Gcommit -v<CR> <bar> ,max
+
 map <leader>spell :set spell! spell?<CR>
