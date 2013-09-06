@@ -202,10 +202,19 @@ augroup IDE
   au BufNewFile,BufRead *.m noremap <Leader>e :!octave --eval 
   au BufNewFile,BufRead *.m noremap <Leader>t :w!<cr>:!octave --eval 'test %'<cr>
 
-  au BufNewFile,BufRead *.rb noremap <Leader>r :w!<cr>:!ruby %<cr>
-  au BufNewFile,BufRead *.rb noremap <Leader>b :w!<cr>:!bundle exec ruby %<cr>
   au BufNewFile,BufRead *.rb noremap <Leader>i :!pry<cr>
-  au BufNewFile,BufRead *_spec.rb noremap <Leader>t :w!<cr>:!rspec %<cr>
+
+  if filereadable("Gemfile") 
+    au BufNewFile,BufRead *.rb noremap <Leader>r :w!<cr>:!bundle exec ruby %<cr>
+
+    if filereadable("Rakefile")
+      au BufNewFile,BufRead test*.rb noremap <Leader>t :w!<cr>:!bundle exec rake test TEST=%<cr>
+    end
+  else
+    au BufNewFile,BufRead *.rb noremap <Leader>r :w!<cr>:!ruby %<cr>
+    au BufNewFile,BufRead *_spec.rb noremap <Leader>t :w!<cr>:!rspec %<cr>
+  endif
+
   au BufNewFile,BufRead *.rb noremap <Leader>smell :Shell reek %<cr>
 
   " shortcuts to all project files
