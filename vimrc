@@ -275,3 +275,7 @@ map <leader>gac :Gwrite<CR> <bar> :Gcommit -v<CR> <bar> ,max
 map <leader>spell :set spell! spell?<CR>
 
 nnoremap <leader>vv :vsplit $MYVIMRC<cr>
+nnoremap <leader>vl :so $MYVIMRC<cr>
+
+inoremap dk <esc>
+inoremap <esc> <nop>
