@@ -1,5 +1,10 @@
 call pathogen#infect()
 
+augroup General
+  autocmd!
+  au BufWritePost .vimrc so ~/.vimrc
+augroup END
+
 filetype off                   " required!
 
 set rtp+=~/.vim/bundle/vundle/
@@ -66,7 +71,6 @@ let mapleader=","
 " status line
 :set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 
-
 " Move around splits with <c-hjkl>
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -77,7 +81,7 @@ nnoremap <c-l> <c-w>l
 nnoremap <Leader>max :wincmd _ \| wincmd <bar><CR>
 
 " Clear the search buffer when hitting return
-:nnoremap <CR> :nohlsearch<cr>
+nnoremap <CR> :nohlsearch<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
@@ -120,43 +124,41 @@ map <leader>n :call RenameFile()<cr>
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " reopens the last buffer
-map ,, <C-^>
+noremap ,, <C-^>
 
 " Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
+nnoremap <C-Up> [e
+nnoremap <C-Down> ]e
 
 " Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
-
-au BufWritePost .vimrc so ~/.vimrc
+vnoremap <C-Up> [egv
+vnoremap <C-Down> ]egv
 
 let g:ctrlp_arg_map = 1
 
 nmap <C-W>! <Plug>Kwbd
 
 " Map Control-# to switch tabs
-map <C-0> 0gt
-imap <C-0> <Esc>0gt
-map <C-1> 1gt
-imap <C-1> <Esc>1gt
-map <C-2> 2gt
-imap <C-2> <Esc>2gt
-map <C-3> 3gt
-imap <C-3> <Esc>3gt
-map <C-4> 4gt
-imap <C-4> <Esc>4gt
-map <C-5> 5gt
-imap <C-5> <Esc>5gt
-map <C-6> 6gt
-imap <C-6> <Esc>6gt
-map <C-7> 7gt
-imap <C-7> <Esc>7gt
-map <C-8> 8gt
-imap <C-8> <Esc>8gt
-map <C-9> 9gt
-imap <C-9> <Esc>9gt
+noremap <C-0> 0gt
+inoremap <C-0> <Esc>0gt
+noremap <C-1> 1gt
+inoremap <C-1> <Esc>1gt
+noremap <C-2> 2gt
+inoremap <C-2> <Esc>2gt
+noremap <C-3> 3gt
+inoremap <C-3> <Esc>3gt
+noremap <C-4> 4gt
+inoremap <C-4> <Esc>4gt
+noremap <C-5> 5gt
+inoremap <C-5> <Esc>5gt
+noremap <C-6> 6gt
+inoremap <C-6> <Esc>6gt
+noremap <C-7> 7gt
+inoremap <C-7> <Esc>7gt
+noremap <C-8> 8gt
+inoremap <C-8> <Esc>8gt
+noremap <C-9> 9gt
+inoremap <C-9> <Esc>9gt
 
 set viminfo='100,\"100,:20,%,n~/.viminfo
 
@@ -178,69 +180,73 @@ nnoremap <Leader>ss :%s/\<<C-r><C-w>\>/<C-r><C-w>/gc<Left><Left><Left>
 let g:ctrlp_working_path_mode = 0
 
 " PYTHON
-autocmd BufWritePre *.py normal m`:%s/\s\+$//e
-au FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
-"autocmd BufWritePost *.py call Flake8()
 let g:flake8_max_line_length=110
 
-" My universal IDE :D
-au BufNewFile,BufRead *.py map <Leader>r :w!<cr>:!python %<cr>
-au BufNewFile,BufRead *.py map <Leader>ri :w!<cr>:!ipython -i %<cr>
-au BufNewFile,BufRead *.py map <Leader>rl :w!<cr>:!ipython --pylab -i %<cr>
-au BufNewFile,BufRead *.py map <Leader>i :w!<cr>:!ipython<cr>
-au BufNewFile,BufRead *.py map <Leader>e :w!<cr>:!python -c 
-au BufNewFile,BufRead *.py map <Leader>t :w!<cr>:!nosetests<cr>
-au BufNewFile,BufRead *.py map <Leader>pl :w!<cr>:Shell pylint %<cr>
-" Just looking for errors
-au BufNewFile,BufRead *.py map <Leader>pe :w!<cr>:Shell pylint -E %<cr> 
+augroup IDE
+  autocmd!
+  " My universal IDE :D
+  au FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
+  "autocmd BufWritePost *.py call Flake8()
+  au BufNewFile,BufRead *.py noremap <Leader>r :w!<cr>:!python %<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>ri :w!<cr>:!ipython -i %<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>rl :w!<cr>:!ipython --pylab -i %<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>i :w!<cr>:!ipython<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>e :w!<cr>:!python -c 
+  au BufNewFile,BufRead *.py noremap <Leader>t :w!<cr>:!nosetests<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>pl :w!<cr>:Shell pylint %<cr>
+  " Just looking for errors
+  au BufNewFile,BufRead *.py noremap <Leader>pe :w!<cr>:Shell pylint -E %<cr> 
 
-au BufNewFile,BufRead *.m map <Leader>r :w!<cr>:!octave %<cr>
-au BufNewFile,BufRead *.m map <Leader>i :!octave<cr>
-au BufNewFile,BufRead *.m map <Leader>e :!octave --eval 
-au BufNewFile,BufRead *.m map <Leader>t :w!<cr>:!octave --eval 'test %'<cr>
+  au BufNewFile,BufRead *.m noremap <Leader>r :w!<cr>:!octave %<cr>
+  au BufNewFile,BufRead *.m noremap <Leader>i :!octave<cr>
+  au BufNewFile,BufRead *.m noremap <Leader>e :!octave --eval 
+  au BufNewFile,BufRead *.m noremap <Leader>t :w!<cr>:!octave --eval 'test %'<cr>
 
-au BufNewFile,BufRead *.rb map <Leader>r :w!<cr>:!ruby %<cr>
-au BufNewFile,BufRead *.rb map <Leader>b :w!<cr>:!bundle exec ruby %<cr>
-au BufNewFile,BufRead *.rb map <Leader>i :!pry<cr>
-au BufNewFile,BufRead *_spec.rb map <Leader>t :w!<cr>:!rspec %<cr>
-au BufNewFile,BufRead *.rb map <Leader>smell :Shell reek %<cr>
+  au BufNewFile,BufRead *.rb noremap <Leader>r :w!<cr>:!ruby %<cr>
+  au BufNewFile,BufRead *.rb noremap <Leader>b :w!<cr>:!bundle exec ruby %<cr>
+  au BufNewFile,BufRead *.rb noremap <Leader>i :!pry<cr>
+  au BufNewFile,BufRead *_spec.rb noremap <Leader>t :w!<cr>:!rspec %<cr>
+  au BufNewFile,BufRead *.rb noremap <Leader>smell :Shell reek %<cr>
 
-" shortcuts to all project files
-" all syntaxb
-au BufNewFile,BufRead *.rb map <Leader>as :!for f in `ack -f --ruby`; do ruby -c $f; done<cr>
+  " shortcuts to all project files
+  " all syntaxb
+  au BufNewFile,BufRead *.rb noremap <Leader>as :!for f in `ack -f --ruby`; do ruby -c $f; done<cr>
 
-au BufNewFile,BufRead *.scm map <Leader>r :w!<cr>:!scheme < %<cr>
-au BufNewFile,BufRead *.scm map <Leader>i :!scheme<cr>
-"
-" tell vim to use the rspec compiler for all *_spec.rb files by adding this line to your vimrc
-au BufNewFile,BufRead *_spec.rb compiler rspec
-au BufNewFile,BufRead *_spec.rb setl makeprg=rspec
+  au BufNewFile,BufRead *.py,*.rb noremap <Leader>out :!grep -w '^[ ]*class\\|^[ ]*def' %<cr>
+  au BufWritePre *.py,*.rb normal m`:%s/\s\+$//e
 
-au BufNewFile,BufRead *.py,*.rb map <Leader>out :!grep -w '^[ ]*class\\|^[ ]*def' %<cr>
 
-" XMPFILTER https://github.com/t9md/vim-ruby-xmpfilter
-au BufNewFile,BufRead *.rb nmap <buffer> <F5> <Plug>(xmpfilter-run)
-au BufNewFile,BufRead *.rb xmap <buffer> <F5> <Plug>(xmpfilter-run)
-au BufNewFile,BufRead *.rb imap <buffer> <F5> <Plug>(xmpfilter-run)
+  au BufNewFile,BufRead *.scm noremap <Leader>r :w!<cr>:!scheme < %<cr>
+  au BufNewFile,BufRead *.scm noremap <Leader>i :!scheme<cr>
+  "
+  " tell vim to use the rspec compiler for all *_spec.rb files by adding this line to your vimrc
+  au BufNewFile,BufRead *_spec.rb compiler rspec
+  au BufNewFile,BufRead *_spec.rb setl makeprg=rspec
 
-au BufNewFile,BufRead *.rb nmap <buffer> <F4> <Plug>(xmpfilter-mark)
-au BufNewFile,BufRead *.rb xmap <buffer> <F4> <Plug>(xmpfilter-mark)
-au BufNewFile,BufRead *.rb imap <buffer> <F4> <Plug>(xmpfilter-mark)
+  " XMPFILTER https://github.com/t9md/vim-ruby-xmpfilter
+  au BufNewFile,BufRead *.rb nmap <buffer> <F5> <Plug>(xmpfilter-run)
+  au BufNewFile,BufRead *.rb xmap <buffer> <F5> <Plug>(xmpfilter-run)
+  au BufNewFile,BufRead *.rb imap <buffer> <F5> <Plug>(xmpfilter-run)
 
-nmap <leader>a <Esc>:Ack!
+  au BufNewFile,BufRead *.rb nmap <buffer> <F4> <Plug>(xmpfilter-mark)
+  au BufNewFile,BufRead *.rb xmap <buffer> <F4> <Plug>(xmpfilter-mark)
+  au BufNewFile,BufRead *.rb imap <buffer> <F4> <Plug>(xmpfilter-mark)
+  
+  " Show trailing white space
+  au BufNewFile,BufRead * syn match brancomala '\s\+$' | hi brancomala ctermbg=red
+augroup END
+
+nnoremap <leader>a <Esc>:Ack!
 
 " Some stuff stolen from aurelio:
 " http://aurelio.net/doc/dotfiles/vimrc.txt
 
 " Close everything!
-imap <F11> <esc>:wqa!<cr>
-map <F11> :wqa!<cr>
+inoremap <F11> <esc>:wqa!<cr>
+noremap <F11> :wqa!<cr>
 
 " Keeping myself sane
 cab W w| cab Q q| cab Wq wq| cab wQ wq| cab WQ wq
-
-" Show trailing white space
-au BufNewFile,BufRead * syn match brancomala '\s\+$' | hi brancomala ctermbg=red
 
 " :Shell runs and command and puts its output in a new buffer
 " http://vim.wikia.com/wiki/Display_output_of_shell_commands_in_new_window
