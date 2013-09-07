@@ -78,10 +78,7 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
 " Zooms current split
-nnoremap <Leader>max :wincmd _ \| wincmd <bar><CR>
-
-" Clear the search buffer when hitting return
-nnoremap <CR> :nohlsearch<cr>
+nnoremap <Leader>max :wincmd _ <bar> wincmd <bar><CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
