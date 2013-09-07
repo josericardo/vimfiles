@@ -286,24 +286,10 @@ nnoremap <leader>vl :so $MYVIMRC<cr>
 inoremap dk <esc>
 inoremap <esc> <nop>
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" EXTRACT VARIABLE (SKETCHY)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! ExtractVariable()
-    let name = input("Variable name: ")
-    if name == ''
-        return
-    endif
-    " Enter visual mode (not sure why this is needed since we're already in
-    " visual mode anyway)
-    normal! gv
-
-    " Replace selected text with the variable name
-    exec "normal c" . name
-    " Define the variable on the line above
-    exec "normal! O" . name . " = "
-    " Paste the original selected text to be the variable value
-    normal! $p
-endfunction
-vnoremap <leader>exvar :call ExtractVariable()<cr>
+noremap ;w <esc>:w!<cr>
+ino ;w <esc>:w!<cr>
+noremap ;wq <esc>:wq!<cr>
+ino ;wq <esc>:wq!<cr>
+noremap ;q <esc>:q!<cr>
+ino ;q <esc>:q!<cr>
+nnoremap :w :echo "no!"<cr>
