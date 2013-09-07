@@ -199,7 +199,7 @@ augroup IDE
   au BufNewFile,BufRead *.m noremap <Leader>e :!octave --eval 
   au BufNewFile,BufRead *.m noremap <Leader>t :w!<cr>:!octave --eval 'test %'<cr>
 
-  au BufNewFile,BufRead *.rb noremap <Leader>i :!pry<cr>
+  au BufNewFile,BufRead *.rb nnoremap <Leader>i :!pry<cr>
 
   if filereadable("Gemfile") 
     au BufNewFile,BufRead *.rb noremap <Leader>r :w!<cr>:!bundle exec ruby %<cr>
