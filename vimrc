@@ -265,12 +265,12 @@ augroup IDE
   au BufNewFile,BufRead *.rb nmap <buffer> <F4> <Plug>(xmpfilter-mark)
   au BufNewFile,BufRead *.rb xmap <buffer> <F4> <Plug>(xmpfilter-mark)
   au BufNewFile,BufRead *.rb imap <buffer> <F4> <Plug>(xmpfilter-mark)
-  
+
   " Show trailing white space
   au BufNewFile,BufRead * syn match brancomala '\s\+$' | hi brancomala ctermbg=red
 augroup END
 
-nnoremap <leader>a <Esc>:Ack!
+nnoremap <leader>a :Ack!
 
 " Some stuff stolen from aurelio:
 " http://aurelio.net/doc/dotfiles/vimrc.txt
