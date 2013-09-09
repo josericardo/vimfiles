@@ -218,6 +218,29 @@ augroup IDE
     au BufNewFile,BufRead *_spec.rb noremap <Leader>t :w!<cr>:!rspec %<cr>
   endif
 
+  function! OpenTestAlternate()
+    let new_file = AlternateForCurrentFile()
+    exec ':vsplit ' . new_file
+  endfunction
+  
+  function! AlternateForCurrentFile()
+    let current_file = expand("%")
+    let new_file = current_file
+    let in_spec = match(current_file, '^tests/') != -1
+    let going_to_spec = !in_spec
+
+    if going_to_spec
+      let new_file = substitute(new_file, 'lib/', 'tests/fast/', '')
+      let new_file = substitute(new_file, expand('%:t'), 'test_' . expand('%:t'), '')
+    else
+      let new_file = substitute(new_file, 'tests/fast/', 'lib/', '')
+      let new_file = substitute(new_file, 'test_', '', '')
+    endif
+    return new_file
+  endfunction
+
+  nnoremap <leader>. :call OpenTestAlternate()<cr>
+
   au BufNewFile,BufRead *.rb noremap <Leader>smell :Shell reek %<cr>
 
   " shortcuts to all project files
