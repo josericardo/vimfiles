@@ -250,7 +250,6 @@ augroup IDE
   au BufNewFile,BufRead *.py,*.rb noremap <Leader>out :!grep -w '^[ ]*class\\|^[ ]*def' %<cr>
   au BufWritePre *.py,*.rb normal m`:%s/\s\+$//e
 
-
   au BufNewFile,BufRead *.scm noremap <Leader>r :w!<cr>:!scheme < %<cr>
   au BufNewFile,BufRead *.scm noremap <Leader>i :!scheme<cr>
   "
@@ -322,3 +321,9 @@ ino ;wq <esc>:wq!<cr>
 noremap ;q <esc>:q!<cr>
 ino ;q <esc>:q!<cr>
 nnoremap :w :echo "no!"<cr>
+
+nnoremap <leader>paste :set paste!<cr>
+
+if filereadable(".vim.custom")
+  so .vim.custom
+endif
