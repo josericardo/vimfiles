@@ -327,3 +327,5 @@ nnoremap <leader>paste :set paste!<cr>
 if filereadable(".vim.custom")
   so .vim.custom
 endif
+
+nnoremap ,mkdir :!mkdir -p "%:h"<cr>
