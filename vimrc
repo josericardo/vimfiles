@@ -23,6 +23,7 @@ Bundle 'rking/ag.vim'
 colorscheme elflord
 set nocompatible " be improved
 set nomodeline
+set t_Co=256
 
 " allow unsaved background buffers and remember marks/undo for them
 set hidden
