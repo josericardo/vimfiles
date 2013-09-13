@@ -22,6 +22,7 @@ Bundle 'rking/ag.vim'
 
 colorscheme elflord
 set nocompatible " be improved
+set nomodeline
 
 " allow unsaved background buffers and remember marks/undo for them
 set hidden
@@ -329,3 +330,5 @@ if filereadable(".vim.custom")
 endif
 
 nnoremap ,mkdir :!mkdir -p "%:h"<cr>
+
+
