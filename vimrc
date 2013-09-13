@@ -313,17 +313,6 @@ map <leader>spell :set spell! spell?<CR>
 nnoremap <leader>vv :vsplit $MYVIMRC<cr>
 nnoremap <leader>vl :so $MYVIMRC<cr>
 
-inoremap dk <esc>
-inoremap <esc> <nop>
-
-noremap ;w <esc>:w!<cr>
-ino ;w <esc>:w!<cr>
-noremap ;wq <esc>:wq!<cr>
-ino ;wq <esc>:wq!<cr>
-noremap ;q <esc>:q!<cr>
-ino ;q <esc>:q!<cr>
-nnoremap :w :echo "no!"<cr>
-
 nnoremap <leader>paste :set paste!<cr>
 
 if filereadable(".vim.custom")
@@ -332,4 +321,8 @@ endif
 
 nnoremap ,mkdir :!mkdir -p "%:h"<cr>
 
+noremap <Esc><f1> :w!<cr>
+inoremap <Esc><f1> <Esc>:w!<cr>
+noremap <Esc><f2> :wq!<cr>
+inoremap <Esc><f2> <Esc>:wq!<cr>
 
