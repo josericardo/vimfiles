@@ -325,4 +325,6 @@ noremap <Esc><f1> :w!<cr>
 inoremap <Esc><f1> <Esc>:w!<cr>
 noremap <Esc><f2> :wq!<cr>
 inoremap <Esc><f2> <Esc>:wq!<cr>
+noremap <Esc><f3> :q!<cr>
+inoremap <Esc><f3> <Esc>:q!<cr>
 
