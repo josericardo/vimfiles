@@ -328,3 +328,15 @@ inoremap <Esc><f2> <Esc>:wq!<cr>
 noremap <Esc><f3> :q!<cr>
 inoremap <Esc><f3> <Esc>:q!<cr>
 
+noremap <leader>nt :NERDTree<cr>
+
+function! ToggleErrors()
+    if empty(filter(tabpagebuflist(), 'getbufvar(v:val, "&buftype") is# "quickfix"'))
+         " No location/quickfix list shown, open syntastic error location panel
+         Errors
+    else
+        lclose
+    endif
+endfunction
+
+nnoremap <silent> <leader>e  :<C-u>call ToggleErrors()<CR>
