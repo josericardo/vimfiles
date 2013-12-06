@@ -220,7 +220,7 @@ augroup IDE
   au BufNewFile,BufRead *.rb nnoremap <Leader>i :!pry<cr>
 
   if filereadable("Gemfile") 
-    au BufNewFile,BufRead *.rb noremap <Leader>r :w!<cr>:!bundle exec ruby %<cr>
+    au BufNewFile,BufRead *.rb noremap <Leader>r :w!<cr>:!bundle exec ruby -Ilib %<cr>
 
     if filereadable("Rakefile")
       au BufNewFile,BufRead test*.rb noremap <Leader>t :w!<cr>:!bundle exec rake test TEST=%<cr>
