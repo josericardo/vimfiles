@@ -187,7 +187,9 @@ augroup resCur
   autocmd BufWinEnter * call ResCur()
 augroup END
 
+" replace with blank start
 nnoremap <Leader>sv :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
+" replace with the current word as a start
 nnoremap <Leader>ss :%s/\<<C-r><C-w>\>/<C-r><C-w>/gc<Left><Left><Left>
 
 let g:ctrlp_working_path_mode = 0
