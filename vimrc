@@ -3,6 +3,8 @@ let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 let g:gist_post_private = 1
 
+let g:syntastic_python_checkers=['python']
+
 call pathogen#infect()
 
 augroup General
