@@ -12,7 +12,7 @@ augroup General
   au BufWritePost .vimrc so ~/.vimrc
 augroup END
 
-filetype off                   " required!
+filetype off                   " required! by vundler
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -21,6 +21,12 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'rking/ag.vim'
+
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+set completeopt=longest,menuone
+" enter just selects the selected item
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 colorscheme elflord
 set nocompatible " be improved
