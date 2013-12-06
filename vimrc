@@ -262,6 +262,14 @@ augroup IDE
   au BufNewFile,BufRead *.py,*.rb noremap <Leader>out :!grep -w '^[ ]*class\\|^[ ]*def' %<cr>
   au BufWritePre *.py,*.rb normal m`:%s/\s\+$//e
 
+  """"""""""""""""""""""""""""
+  " Scala
+  """"""""""""""""""""""""""""
+  au BufNewFile,BufRead *.scala noremap <Leader>r :w!<cr>:!scala %<cr>
+
+  """"""""""""""""""""""""""""
+  " Scheme
+  """"""""""""""""""""""""""""
   au BufNewFile,BufRead *.scm noremap <Leader>r :w!<cr>:!scheme < %<cr>
   au BufNewFile,BufRead *.scm noremap <Leader>i :!scheme<cr>
   "
