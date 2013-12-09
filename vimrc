@@ -260,7 +260,7 @@ augroup IDE
   au BufNewFile,BufRead *.rb noremap <Leader>as :!for f in `ack -f --ruby`; do ruby -c $f; done<cr>
 
   au BufNewFile,BufRead *.py,*.rb noremap <Leader>out :!grep -w '^[ ]*class\\|^[ ]*def' %<cr>
-  au BufWritePre *.py,*.rb normal m`:%s/\s\+$//e
+  au BufWritePre *.py,*.rb :%s/\s\+$//e
 
   """"""""""""""""""""""""""""
   " Scala
