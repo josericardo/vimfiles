@@ -54,7 +54,7 @@ set splitright
 
 " removes the highlight of the previous search
 set hlsearch
-nnoremap <leader>/ :nohlsearch<cr>
+nnoremap <Leader>/ :nohlsearch<cr>
 
 " make searches case-sensitive only if they contain upper-case characters
 set ignorecase smartcase
@@ -133,12 +133,12 @@ function! RenameFile()
         redraw!
     endif
 endfunction
-map <leader>n :call RenameFile()<cr>
+map <Leader>n :call RenameFile()<cr>
 
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " reopens the last buffer
-noremap ,, <C-^>
+noremap <Leader><Leader> <C-^>
 
 " Bubble single lines
 nnoremap <C-Up> [e
@@ -177,15 +177,15 @@ inoremap <C-9> <Esc>9gt
 set viminfo='100,\"100,:20,%,n~/.viminfo
 
 function! ResCur()
-  if line("'\"") <= line("$")
-    normal! g`"
-    return 1
-  endif
+if line("'\"") <= line("$")
+  normal! g`"
+  return 1
+endif
 endfunction
 
 augroup resCur
-  autocmd!
-  autocmd BufWinEnter * call ResCur()
+autocmd!
+autocmd BufWinEnter * call ResCur()
 augroup END
 
 " replace with blank start
@@ -252,7 +252,7 @@ augroup IDE
     return new_file
   endfunction
 
-  nnoremap <leader>. :call OpenTestAlternate()<cr>
+  nnoremap <Leader>. :call OpenTestAlternate()<cr>
 
   au BufNewFile,BufRead *.rb noremap <Leader>smell :Shell reek %<cr>
 
@@ -291,7 +291,7 @@ augroup IDE
   au BufNewFile,BufRead * syn match brancomala '\s\+$' | hi brancomala ctermbg=red
 augroup END
 
-nnoremap <leader>a :Ack!
+nnoremap <Leader>a :Ack!
 
 " Some stuff stolen from aurelio:
 " http://aurelio.net/doc/dotfiles/vimrc.txt
@@ -325,20 +325,20 @@ function! s:RunShellCommand(cmdline)
   1
 endfunction
 
-map <leader>gac :Gwrite<CR> <bar> :Gcommit -v<CR> <bar> ,max
+map <Leader>gac :Gwrite<CR> <bar> :Gcommit -v<CR> <bar> ,max
 
-map <leader>spell :set spell! spell?<CR>
+map <Leader>spell :set spell! spell?<CR>
 
-nnoremap <leader>vv :vsplit $MYVIMRC<cr>
-nnoremap <leader>vl :so $MYVIMRC<cr>
+nnoremap <Leader>vv :vsplit $MYVIMRC<cr>
+nnoremap <Leader>vl :so $MYVIMRC<cr>
 
-nnoremap <leader>paste :set paste!<cr>
+nnoremap <Leader>paste :set paste!<cr>
 
 if filereadable(".vim.custom")
   so .vim.custom
 endif
 
-nnoremap ,mkdir :!mkdir -p "%:h"<cr>
+nnoremap <Leader>mkdir :!mkdir -p "%:h"<cr>
 
 noremap <Esc><f1> :w!<cr>
 inoremap <Esc><f1> <Esc>:w!<cr>
@@ -347,7 +347,7 @@ inoremap <Esc><f2> <Esc>:wq!<cr>
 noremap <Esc><f3> :q!<cr>
 inoremap <Esc><f3> <Esc>:q!<cr>
 
-noremap <leader>nt :NERDTree<cr>
+noremap <Leader>nt :NERDTree<cr>
 
 function! ToggleErrors()
     if empty(filter(tabpagebuflist(), 'getbufvar(v:val, "&buftype") is# "quickfix"'))
@@ -358,7 +358,7 @@ function! ToggleErrors()
     endif
 endfunction
 
-nnoremap <silent> <leader>e  :<C-u>call ToggleErrors()<CR>
+nnoremap <silent> <Leader>e  :<C-u>call ToggleErrors()<CR>
 
 set colorcolumn=81
 nnoremap : ;
