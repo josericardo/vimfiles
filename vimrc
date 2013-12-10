@@ -1,3 +1,5 @@
+let mapleader=","
+
 " gist-vim configuration
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
@@ -52,7 +54,7 @@ set splitright
 
 " removes the highlight of the previous search
 set hlsearch
-:map ,/ :nohlsearch<cr>
+nnoremap <leader>/ :nohlsearch<cr>
 
 " make searches case-sensitive only if they contain upper-case characters
 set ignorecase smartcase
@@ -82,7 +84,6 @@ filetype plugin indent on
 set wildmode=longest,list
 " make tab completion for files/buffers act like bash
 set wildmenu
-let mapleader=","
 
 " status line
 set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
