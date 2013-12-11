@@ -208,7 +208,8 @@ augroup IDE
   au BufNewFile,BufRead *.py noremap <Leader>rl :w!<cr>:!ipython --pylab -i %<cr>
   au BufNewFile,BufRead *.py noremap <Leader>i :w!<cr>:!ipython<cr>
   au BufNewFile,BufRead *.py noremap <Leader>e :w!<cr>:!python -c 
-  au BufNewFile,BufRead *.py noremap <Leader>t :w!<cr>:!nosetests<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>t :!find . -iname "%:t:r_test.py" <bar> xargs nosetests -s -v<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>ta :w!<cr>:!nosetests<cr>
   au BufNewFile,BufRead *.py noremap <Leader>pl :w!<cr>:Shell pylint %<cr>
   " Just looking for errors
   au BufNewFile,BufRead *.py noremap <Leader>pe :w!<cr>:Shell pylint -E %<cr> 
@@ -325,9 +326,9 @@ function! s:RunShellCommand(cmdline)
   1
 endfunction
 
-map <Leader>gac :Gwrite<CR> <bar> :Gcommit -v<CR> <bar> ,max
+nnoremap <Leader>gac :Gwrite<CR> <bar> :Gcommit -v<CR> <bar> ,max
 
-map <Leader>spell :set spell! spell?<CR>
+nnoremap <Leader>spell :set spell! spell?<CR>
 
 nnoremap <Leader>vv :vsplit $MYVIMRC<cr>
 nnoremap <Leader>vl :so $MYVIMRC<cr>
