@@ -361,6 +361,5 @@ endfunction
 
 nnoremap <silent> <Leader>e  :<C-u>call ToggleErrors()<CR>
 
-set colorcolumn=81
 nnoremap : ;
 nnoremap ; :
