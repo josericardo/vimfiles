@@ -203,12 +203,19 @@ augroup IDE
   " My universal IDE :D
   au FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
   "autocmd BufWritePost *.py call Flake8()
-  au BufNewFile,BufRead *.py noremap <Leader>r :w!<cr>:!python %<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>r  :w!<cr>:!python %<cr>
   au BufNewFile,BufRead *.py noremap <Leader>ri :w!<cr>:!ipython -i %<cr>
   au BufNewFile,BufRead *.py noremap <Leader>rl :w!<cr>:!ipython --pylab -i %<cr>
-  au BufNewFile,BufRead *.py noremap <Leader>i :w!<cr>:!ipython<cr>
-  au BufNewFile,BufRead *.py noremap <Leader>e :w!<cr>:!python -c 
-  au BufNewFile,BufRead *.py noremap <Leader>t :!find . -iname "%:t:r_test.py" <bar> xargs nosetests -s -v<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>i  :w!<cr>:!ipython<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>e  :w!<cr>:!python -c 
+
+  function! PyTestName()
+    return shellescape(substitute(expand('%:t:r'), '_test', '', 'g') . '_test.py')
+  endfunction
+
+  au BufNewFile,BufRead *.py noremap <Leader>t :echo system('find . -iname ' .
+        \ PyTestName() . ' <bar> xargs nosetests -s -v ')<CR>
+
   au BufNewFile,BufRead *.py noremap <Leader>ta :w!<cr>:!nosetests<cr>
   au BufNewFile,BufRead *.py noremap <Leader>pl :w!<cr>:Shell pylint %<cr>
   " Just looking for errors
