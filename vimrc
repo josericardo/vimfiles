@@ -265,7 +265,7 @@ augroup IDE
     return new_file
   endfunction
 
-  nnoremap <Leader>. :call OpenTestAlternate()<cr>
+  au BufNewFile,BufRead *.rb nnoremap <Leader>. :call OpenTestAlternate()<cr>
 
   au BufNewFile,BufRead *.rb noremap <Leader>smell :Shell reek %<cr>
 
