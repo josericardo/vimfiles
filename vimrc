@@ -217,6 +217,11 @@ augroup IDE
         \ PyTestName() . ' <bar> xargs nosetests -s -v ')<CR>
 
   au BufNewFile,BufRead *.py noremap <Leader>ta :w!<cr>:!nosetests<cr>
+  au BufNewFile,BufRead *.py nnoremap <buffer> K :<C-u>let save_isk = &iskeyword \|
+      \ set iskeyword+=. \|
+      \ execute "!pydoc " . expand("<cword>") \|
+      \ let &iskeyword = save_isk<CR>
+
   au BufNewFile,BufRead *.py noremap <Leader>pl :w!<cr>:Shell pylint %<cr>
   " Just looking for errors
   au BufNewFile,BufRead *.py noremap <Leader>pe :w!<cr>:Shell pylint -E %<cr> 
