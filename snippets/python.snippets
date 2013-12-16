@@ -1,0 +1,13 @@
+snippet Test
+	#!/bin/env python
+	# encoding: utf-8
+
+	import unittest
+
+
+	class ${1}Test(unittest.TestCase):
+		def setUp(self):
+			pass
+
+snippet bp
+	import ipdb; ipdb.set_trace()
