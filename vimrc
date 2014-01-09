@@ -375,3 +375,7 @@ nnoremap <silent> <Leader>e  :<C-u>call ToggleErrors()<CR>
 
 nnoremap : ;
 nnoremap ; :
+nnoremap , _
+
+set nobackup
+set noswapfile
