@@ -211,6 +211,7 @@ augroup IDE
   au BufNewFile,BufRead *.py noremap <Leader>i  :w!<cr>:!ipython<cr>
   au BufNewFile,BufRead *.py noremap <Leader>e  :w!<cr>:!python -c 
   au BufNewFile,BufRead *.py noremap <Leader>pt  :w!<cr>:!py.test %<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>pdb  :w!<cr>:!py.test -s %<cr>
 
   function! PyTestPathAsModule()
     return shellescape(substitute(substitute(expand('%'), '.py', '', 'g'), '/', '.', 'g'))
