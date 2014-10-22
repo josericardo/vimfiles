@@ -23,6 +23,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'rking/ag.vim'
+Bundle "davidhalter/jedi-vim"
 
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
@@ -387,3 +388,7 @@ noremap , _
 
 set nobackup
 set noswapfile
+
+" jedi-vim's config
+let g:jedi#popup_on_dot = 0
+let g:jedi#use_splits_not_buffers = "left"
