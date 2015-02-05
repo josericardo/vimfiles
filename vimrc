@@ -134,7 +134,7 @@ function! RenameFile()
         redraw!
     endif
 endfunction
-map <Leader>n :call RenameFile()<cr>
+nnoremap <Leader>n :call RenameFile()<cr>
 
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
