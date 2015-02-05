@@ -296,7 +296,10 @@ augroup IDE
   """"""""""""""""""""""""""""
   au BufNewFile,BufRead *.scm noremap <Leader>r :w!<cr>:!scheme < %<cr>
   au BufNewFile,BufRead *.scm noremap <Leader>i :!scheme<cr>
-  "
+  
+  """"""""""""""""""""""""""""
+  " Ruby
+  """"""""""""""""""""""""""""
   " tell vim to use the rspec compiler for all *_spec.rb files by adding this line to your vimrc
   au BufNewFile,BufRead *_spec.rb compiler rspec
   au BufNewFile,BufRead *_spec.rb setl makeprg=rspec
@@ -310,8 +313,21 @@ augroup IDE
   au BufNewFile,BufRead *.rb xmap <buffer> <F4> <Plug>(xmpfilter-mark)
   au BufNewFile,BufRead *.rb imap <buffer> <F4> <Plug>(xmpfilter-mark)
 
+  """"""""""""""""""""""""""""
+  " PHP
+  """"""""""""""""""""""""""""
+  au FileType php setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
+  au BufNewFile,BufRead *.php noremap <Leader>out :!grep -w '^[ ]*class\\|^.*function' %<cr>
+  au BufNewFile,BufRead *.php noremap <Leader>outp :!grep -w '^[ ]*class\\|^.*public.*function' %<cr>
+
+  """"""""""""""""""""""""""""
+  " Elixir
+  """"""""""""""""""""""""""""
+  au BufNewFile,BufRead *.exs noremap <Leader>r :w!<cr>:!elixir %<cr>
+  
   " Show trailing white space
   au BufNewFile,BufRead * syn match brancomala '\s\+$' | hi brancomala ctermbg=red
+  
 augroup END
 
 nnoremap <Leader>a :Ack!
