@@ -409,3 +409,6 @@ set noswapfile
 " jedi-vim's config
 let g:jedi#popup_on_dot = 0
 let g:jedi#use_splits_not_buffers = "left"
+
+nnoremap j gj
+nnoremap k gk
