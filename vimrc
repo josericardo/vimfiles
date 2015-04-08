@@ -1,4 +1,24 @@
+set nocompatible
 let mapleader=","
+
+""""""""""""""""""""""""""""""""""""""""
+" Vundle Setup
+""""""""""""""""""""""""""""""""""""""""
+filetype off                   " required! by vundler
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle (required!)
+Plugin 'gmarik/vundle'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'rking/ag.vim'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'bling/vim-airline'
+
+call vundle#end()
+filetype plugin indent on    " required
+""""""""""""""""""""""""""""""""""""""""
 
 " gist-vim configuration
 let g:gist_detect_filetype = 1
@@ -13,18 +33,6 @@ augroup General
   autocmd!
   au BufWritePost .vimrc so ~/.vimrc
 augroup END
-
-filetype off                   " required! by vundler
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle (required!)
-Bundle 'gmarik/vundle'
-Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'rking/ag.vim'
-Bundle "davidhalter/jedi-vim"
-Bundle 'bling/vim-airline'
 
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
