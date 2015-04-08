@@ -317,9 +317,13 @@ augroup IDE
   """"""""""""""""""""""""""""
   " PHP
   """"""""""""""""""""""""""""
-  au FileType php setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
+  au FileType php set tabstop=4 shiftwidth=4
   au BufNewFile,BufRead *.php noremap <Leader>out :!grep -w '^[ ]*class\\|^.*function' %<cr>
   au BufNewFile,BufRead *.php noremap <Leader>outp :!grep -w '^[ ]*class\\|^.*public.*function' %<cr>
+  au BufNewFile,BufRead *.php noremap <Leader>cs :!make cs FILE=%<cr>
+  au BufNewFile,BufRead *.php noremap <Leader>ct :!make test FILE=%<cr>
+  au BufNewFile,BufRead *.php syn match tabmala '^\s\*\t\+' | hi tabmala ctermbg=red
+  au BufNewFile,BufRead *.php hi ExtraWhitespace ctermbg=red guibg=red| match ExtraWhitespace /\s\+$\|\t/
 
   """"""""""""""""""""""""""""
   " Elixir
