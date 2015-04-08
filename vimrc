@@ -24,6 +24,7 @@ Bundle 'gmarik/vundle'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'rking/ag.vim'
 Bundle "davidhalter/jedi-vim"
+Bundle 'bling/vim-airline'
 
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
