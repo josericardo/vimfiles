@@ -204,14 +204,15 @@ augroup IDE
   " My universal IDE :D
   au FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
   "autocmd BufWritePost *.py call Flake8()
-  au BufNewFile,BufRead *.py noremap <Leader>r  :w!<cr>:!python %<cr>
-  au BufNewFile,BufRead *.py noremap <Leader>rj  :w!<cr>:!python % < input<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>r :w!<cr>:!python %<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>rj :w!<cr>:!python % < input<cr>
   au BufNewFile,BufRead *.py noremap <Leader>ri :w!<cr>:!ipython -i %<cr>
   au BufNewFile,BufRead *.py noremap <Leader>rl :w!<cr>:!ipython --pylab -i %<cr>
-  au BufNewFile,BufRead *.py noremap <Leader>i  :w!<cr>:!ipython<cr>
-  au BufNewFile,BufRead *.py noremap <Leader>e  :w!<cr>:!python -c 
-  au BufNewFile,BufRead *.py noremap <Leader>pt  :w!<cr>:!py.test %<cr>
-  au BufNewFile,BufRead *.py noremap <Leader>pdb  :w!<cr>:!py.test -s %<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>i :w!<cr>:!ipython<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>e :w!<cr>:!python -c 
+  au BufNewFile,BufRead *.py noremap <Leader>pt :w!<cr>:!py.test %<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>pdb :w!<cr>:!py.test -s %<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>f8 :w!<cr>:!flake8 %<cr>
 
   function! PyTestPathAsModule()
     return shellescape(substitute(substitute(expand('%'), '.py', '', 'g'), '/', '.', 'g'))
