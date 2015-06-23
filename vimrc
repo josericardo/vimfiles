@@ -12,12 +12,13 @@ call vundle#begin()
 " let Vundle manage Vundle (required!)
 Plugin 'gmarik/vundle'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'davidhalter/jedi-vim'
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'msanders/snipmate.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'JarrodCTaylor/vim-python-test-runner'
 
 call vundle#end()
 filetype plugin indent on    " required
