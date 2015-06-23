@@ -225,9 +225,13 @@ augroup IDE
   au BufNewFile,BufRead *.py noremap <Leader>rl :w!<cr>:!ipython --pylab -i %<cr>
   au BufNewFile,BufRead *.py noremap <Leader>i :w!<cr>:!ipython<cr>
   au BufNewFile,BufRead *.py noremap <Leader>e :w!<cr>:!python -c 
-  au BufNewFile,BufRead *.py noremap <Leader>pt :w!<cr>:!py.test %<cr>
-  au BufNewFile,BufRead *.py noremap <Leader>pdb :w!<cr>:!py.test -s %<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>pt :w!<cr>:!nosetests -s %<cr>
   au BufNewFile,BufRead *.py noremap <Leader>f8 :w!<cr>:!flake8 %<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>pl :w!<cr>:Shell pylint %<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>pe :w!<cr>:Shell pylint -E %<cr> 
+  au BufNewFile,BufRead *.py noremap <Leader>nt :w!<cr>:NosetestFile<cr> 
+  au BufNewFile,BufRead *.py noremap <Leader>nm :w!<cr>:NosetestMethod<cr> 
+
 
   function! PyTestPathAsModule()
     return shellescape(substitute(substitute(expand('%'), '.py', '', 'g'), '/', '.', 'g'))
@@ -247,10 +251,6 @@ augroup IDE
       \ set iskeyword+=. \|
       \ execute "!pydoc " . expand("<cword>") \|
       \ let &iskeyword = save_isk<CR>
-
-  au BufNewFile,BufRead *.py noremap <Leader>pl :w!<cr>:Shell pylint %<cr>
-  " Just looking for errors
-  au BufNewFile,BufRead *.py noremap <Leader>pe :w!<cr>:Shell pylint -E %<cr> 
 
   au BufNewFile,BufRead *.m noremap <Leader>r :w!<cr>:!octave %<cr>
   au BufNewFile,BufRead *.m noremap <Leader>i :!octave<cr>
