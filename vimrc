@@ -30,6 +30,8 @@ let g:gist_post_private = 1
 
 let g:syntastic_python_checkers=['pyflakes']
 
+set diffopt+=vertical " specially for Gdiff
+
 call pathogen#infect()
 
 augroup General
@@ -43,7 +45,7 @@ set completeopt=longest,menuone
 " enter just selects the selected item
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-colorscheme elflord
+colorscheme github
 set nocompatible " be improved
 set nomodeline
 set t_Co=256
@@ -395,6 +397,7 @@ if filereadable(".vim.custom")
 endif
 
 nnoremap <Leader>mkdir :!mkdir -p "%:h"<cr>
+nnoremap <Leader>fixhl <Esc>:syntax sync fromstart<CR>
 
 noremap <Esc><f1> :w!<cr>
 inoremap <Esc><f1> <Esc>:w!<cr>
@@ -423,9 +426,8 @@ noremap , _
 set nobackup
 set noswapfile
 
-" jedi-vim's config
-let g:jedi#popup_on_dot = 0
-let g:jedi#use_splits_not_buffers = "left"
-
 nnoremap j gj
 nnoremap k gk
+
+set wildignore+=*.pyc
+
