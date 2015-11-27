@@ -348,6 +348,8 @@ augroup IDE
   " Show trailing white space
   au BufNewFile,BufRead * syn match brancomala '\s\+$' | hi brancomala ctermbg=red
   
+  au BufNewFile,BufRead *.json nnoremap <Leader>= :%!python -m json.tool<cr>
+  
 augroup END
 
 nnoremap <Leader>a :Ack!
