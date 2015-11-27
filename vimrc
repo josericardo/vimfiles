@@ -352,6 +352,9 @@ augroup END
 
 nnoremap <Leader>a :Ack!
 
+" Remove trailing white space
+noremap <Leader>rtws :%s/\s\+$//e<cr>
+
 " Some stuff stolen from aurelio:
 " http://aurelio.net/doc/dotfiles/vimrc.txt
 
