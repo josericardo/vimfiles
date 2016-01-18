@@ -19,6 +19,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'JarrodCTaylor/vim-python-test-runner'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'jmcantrell/vim-virtualenv'
 
 call vundle#end()
 filetype plugin indent on    " required
