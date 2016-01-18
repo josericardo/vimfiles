@@ -412,6 +412,10 @@ if filereadable(".vim.custom")
   so .vim.custom
 endif
 
+if filereadable("../.vim.custom")
+  so ../.vim.custom
+endif
+
 nnoremap <Leader>mkdir :!mkdir -p "%:h"<cr>
 nnoremap <Leader>fixhl <Esc>:syntax sync fromstart<CR>
 
