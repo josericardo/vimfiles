@@ -10,7 +10,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle (required!)
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
@@ -19,10 +19,9 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'JarrodCTaylor/vim-python-test-runner'
-Plugin 'davidhalter/jedi-vim'
 Plugin 'jmcantrell/vim-virtualenv'
-
 call vundle#end()
+
 filetype plugin indent on    " required
 """"""""""""""""""""""""""""""""""""""""
 
