@@ -470,3 +470,5 @@ function! ExtractVariable()
     normal! $p
 endfunction
 vnoremap <leader>ev :call ExtractVariable()<cr>
+
+ab :shrug: ¯\_(ツ)_/¯
