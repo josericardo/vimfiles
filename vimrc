@@ -472,3 +472,5 @@ endfunction
 vnoremap <leader>ev :call ExtractVariable()<cr>
 
 ab :shrug: ¯\_(ツ)_/¯
+
+hi IncSearch cterm=NONE ctermfg=black ctermbg=green
