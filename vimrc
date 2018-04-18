@@ -110,6 +110,7 @@ filetype plugin indent on
 set wildmode=longest,list
 " make tab completion for files/buffers act like bash
 set wildmenu
+setlocal cm=blowfish2
 
 " status line
 set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
