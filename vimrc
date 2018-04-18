@@ -227,6 +227,11 @@ let g:flake8_max_line_length=110
 
 augroup IDE
   autocmd!
+
+  function! PyTestPathAsModule()
+    return shellescape(substitute(substitute(expand('%'), '.py', '', 'g'), '/', '.', 'g'))
+  endfunction
+
   " My universal IDE :D
   au FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
   "autocmd BufWritePost *.py call Flake8()
@@ -242,12 +247,7 @@ augroup IDE
   au BufNewFile,BufRead *.py noremap <Leader>pe :w!<cr>:Shell pylint -E %<cr> 
   au BufNewFile,BufRead *.py noremap <Leader>nt :w!<cr>:NosetestFile<cr> 
   au BufNewFile,BufRead *.py noremap <Leader>nm :w!<cr>:NosetestMethod<cr> 
-
-
-  function! PyTestPathAsModule()
-    return shellescape(substitute(substitute(expand('%'), '.py', '', 'g'), '/', '.', 'g'))
-  endfunction
-
+  au BufNewFile,BufRead *.py noremap <Leader>dt :w!<cr>:exec '!python manage.py test ' . PyTestPathAsModule() <cr>
   au BufNewFile,BufRead *_test.py noremap <Leader>r  :w!<cr>:exec '!python -m ' . PyTestPathAsModule() <cr>
 
   function! PyTestName()
