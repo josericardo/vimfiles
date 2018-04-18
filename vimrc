@@ -242,7 +242,7 @@ augroup IDE
   au BufNewFile,BufRead *.py noremap <Leader>i :w!<cr>:!ipython<cr>
   au BufNewFile,BufRead *.py noremap <Leader>e :w!<cr>:!python -c 
   au BufNewFile,BufRead *.py noremap <Leader>pt :w!<cr>:!nosetests -s --with-doctest %<cr>
-  au BufNewFile,BufRead *.py noremap <Leader>f8 :w!<cr>:!flake8 --max-line-length=110 %<cr>
+  au BufNewFile,BufRead *.py noremap <Leader>f8 :w!<cr>:!flake8 %<cr>
   au BufNewFile,BufRead *.py noremap <Leader>pl :w!<cr>:Shell pylint %<cr>
   au BufNewFile,BufRead *.py noremap <Leader>pe :w!<cr>:Shell pylint -E %<cr> 
   au BufNewFile,BufRead *.py noremap <Leader>nt :w!<cr>:NosetestFile<cr> 
@@ -476,3 +476,4 @@ vnoremap <leader>ev :call ExtractVariable()<cr>
 ab :shrug: ¯\_(ツ)_/¯
 
 hi IncSearch cterm=NONE ctermfg=black ctermbg=green
+
