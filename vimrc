@@ -20,6 +20,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'JarrodCTaylor/vim-python-test-runner'
 Plugin 'jmcantrell/vim-virtualenv'
+Plugin 'lepture/vim-jinja'
 call vundle#end()
 
 filetype plugin indent on    " required
