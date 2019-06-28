@@ -14,16 +14,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
-Plugin 'msanders/snipmate.vim'
-Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'JarrodCTaylor/vim-python-test-runner'
-Plugin 'jmcantrell/vim-virtualenv'
-Plugin 'posva/vim-vue'
-Plugin 'lepture/vim-jinja'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'ambv/black'
 Plugin 'editorconfig/editorconfig-vim'
 call vundle#end()
 
@@ -84,7 +76,6 @@ set splitright
 
 " removes the highlight of the previous search
 set hlsearch
-nnoremap <Leader>/ :nohlsearch<cr>
 
 " make searches case-sensitive only if they contain upper-case characters
 set ignorecase smartcase
@@ -119,6 +110,24 @@ setlocal cm=blowfish2
 " status line
 set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 
+nnoremap j gj
+nnoremap k gk
+noremap : ;
+noremap ; :
+noremap , _
+
+nnoremap <Leader>/ :nohlsearch<cr>
+" replace with blank start
+nnoremap <Leader>sv :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
+" replace with the current word as a start
+nnoremap <Leader>ss :%s/\<<C-r><C-w>\>/<C-r><C-w>/gc<Left><Left><Left>
+nnoremap <Leader>a :Ack!
+nnoremap <Leader>gac :Gwrite<CR> <bar> :Gcommit -v<CR> <bar> ,max
+nnoremap <Leader>spell :set spell! spell?<CR>
+nnoremap <Leader>vv :vsplit $MYVIMRC<cr>
+nnoremap <Leader>vl :so $MYVIMRC<cr>
+nnoremap <Leader>paste :set paste!<cr>
+
 " Move around splits with <c-hjkl>
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -127,6 +136,17 @@ nnoremap <c-l> <c-w>l
 
 " Zooms current split
 nnoremap <Leader>max :wincmd _ <bar> wincmd <bar><CR>
+
+" reopens the last buffer
+noremap <Leader><Leader> <C-^>
+
+" Bubble single lines
+nnoremap <C-Up> [e
+nnoremap <C-Down> ]e
+
+" Bubble multiple lines
+vnoremap <C-Up> [egv
+vnoremap <C-Down> ]egv
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
@@ -164,70 +184,11 @@ function! RenameFile()
         redraw!
     endif
 endfunction
-nnoremap <Leader>n :call RenameFile()<cr>
-
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
-
-" reopens the last buffer
-noremap <Leader><Leader> <C-^>
-
-" Bubble single lines
-nnoremap <C-Up> [e
-nnoremap <C-Down> ]e
-
-" Bubble multiple lines
-vnoremap <C-Up> [egv
-vnoremap <C-Down> ]egv
 
 let g:ctrlp_arg_map = 1
-
-nmap <C-W>! <Plug>Kwbd
-
-" Map Control-# to switch tabs
-noremap <C-0> 0gt
-inoremap <C-0> <Esc>0gt
-noremap <C-1> 1gt
-inoremap <C-1> <Esc>1gt
-noremap <C-2> 2gt
-inoremap <C-2> <Esc>2gt
-noremap <C-3> 3gt
-inoremap <C-3> <Esc>3gt
-noremap <C-4> 4gt
-inoremap <C-4> <Esc>4gt
-noremap <C-5> 5gt
-inoremap <C-5> <Esc>5gt
-noremap <C-6> 6gt
-inoremap <C-6> <Esc>6gt
-noremap <C-7> 7gt
-inoremap <C-7> <Esc>7gt
-noremap <C-8> 8gt
-inoremap <C-8> <Esc>8gt
-noremap <C-9> 9gt
-inoremap <C-9> <Esc>9gt
-
-set viminfo='100,\"100,:20,%,n~/.viminfo
-
-function! ResCur()
-if line("'\"") <= line("$")
-  normal! g`"
-  return 1
-endif
-endfunction
-
-augroup resCur
-autocmd!
-autocmd BufWinEnter * call ResCur()
-augroup END
-
-" replace with blank start
-nnoremap <Leader>sv :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
-" replace with the current word as a start
-nnoremap <Leader>ss :%s/\<<C-r><C-w>\>/<C-r><C-w>/gc<Left><Left><Left>
-
 let g:ctrlp_working_path_mode = 0
 
-" PYTHON
-let g:flake8_max_line_length=110
+set viminfo='100,\"100,:20,%,n~/.viminfo
 
 augroup IDE
   autocmd!
@@ -252,7 +213,9 @@ augroup IDE
   au BufNewFile,BufRead *.py noremap <Leader>nt :w!<cr>:NosetestFile<cr> 
   au BufNewFile,BufRead *.py noremap <Leader>nm :w!<cr>:NosetestMethod<cr> 
   au BufNewFile,BufRead *.py noremap <Leader>dt :w!<cr>:exec '!python manage.py test ' . PyTestPathAsModule() <cr>
-  au BufNewFile,BufRead *_test.py noremap <Leader>r  :w!<cr>:exec '!python -m ' . PyTestPathAsModule() <cr>
+  au BufNewFile,BufRead *_test.py noremap <Leader>r :w!<cr>:exec '!python -m ' . PyTestPathAsModule() <cr>
+  au BufNewFile,BufRead *.py,*.rb noremap <Leader>out :!grep -w '^[ ]*class\\|^[ ]*def' %<cr>
+  au BufWritePre *.py,*.rb :%s/\s\+$//e
 
   function! PyTestName()
     return shellescape(substitute(expand('%:t:r'), '_test', '', 'g') . '_test.py')
@@ -266,108 +229,7 @@ augroup IDE
       \ set iskeyword+=. \|
       \ execute "!pydoc " . expand("<cword>") \|
       \ let &iskeyword = save_isk<CR>
-
-  au BufNewFile,BufRead *.m noremap <Leader>r :w!<cr>:!octave %<cr>
-  au BufNewFile,BufRead *.m noremap <Leader>i :!octave<cr>
-  au BufNewFile,BufRead *.m noremap <Leader>e :!octave --eval 
-  au BufNewFile,BufRead *.m noremap <Leader>t :w!<cr>:!octave --eval 'test %'<cr>
-
-  au BufNewFile,BufRead *.rb nnoremap <Leader>i :!pry<cr>
-
-  if filereadable("Gemfile") 
-    au BufNewFile,BufRead *.rb noremap <Leader>r :w!<cr>:!bundle exec ruby -Ilib %<cr>
-
-    if filereadable("Rakefile")
-      au BufNewFile,BufRead test*.rb noremap <Leader>t :w!<cr>:!bundle exec rake test TEST=%<cr>
-    end
-  else
-    au BufNewFile,BufRead *.rb noremap <Leader>r :w!<cr>:!ruby %<cr>
-    au BufNewFile,BufRead *_spec.rb noremap <Leader>t :w!<cr>:!rspec %<cr>
-  endif
-
-  function! OpenTestAlternate()
-    let new_file = AlternateForCurrentFile()
-    exec ':vsplit ' . new_file
-  endfunction
-  
-  function! AlternateForCurrentFile()
-    let current_file = expand("%")
-    let new_file = current_file
-    let in_spec = match(current_file, '^tests/') != -1
-    let going_to_spec = !in_spec
-
-    if going_to_spec
-      let new_file = substitute(new_file, 'lib/', 'tests/fast/', '')
-      let new_file = substitute(new_file, expand('%:t'), 'test_' . expand('%:t'), '')
-    else
-      let new_file = substitute(new_file, 'tests/fast/', 'lib/', '')
-      let new_file = substitute(new_file, 'test_', '', '')
-    endif
-    return new_file
-  endfunction
-
-  au BufNewFile,BufRead *.rb nnoremap <Leader>. :call OpenTestAlternate()<cr>
-
-  au BufNewFile,BufRead *.rb noremap <Leader>smell :Shell reek %<cr>
-
-  " shortcuts to all project files
-  " all syntaxb
-  au BufNewFile,BufRead *.rb noremap <Leader>as :!for f in `ack -f --ruby`; do ruby -c $f; done<cr>
-
-  au BufNewFile,BufRead *.py,*.rb noremap <Leader>out :!grep -w '^[ ]*class\\|^[ ]*def' %<cr>
-  au BufWritePre *.py,*.rb :%s/\s\+$//e
-
-  """"""""""""""""""""""""""""
-  " Scala
-  """"""""""""""""""""""""""""
-  au BufNewFile,BufRead *.scala noremap <Leader>r :w!<cr>:!scala %<cr>
-
-  """"""""""""""""""""""""""""
-  " Scheme
-  """"""""""""""""""""""""""""
-  au BufNewFile,BufRead *.scm noremap <Leader>r :w!<cr>:!scheme < %<cr>
-  au BufNewFile,BufRead *.scm noremap <Leader>i :!scheme<cr>
-  
-  """"""""""""""""""""""""""""
-  " Ruby
-  """"""""""""""""""""""""""""
-  " tell vim to use the rspec compiler for all *_spec.rb files by adding this line to your vimrc
-  au BufNewFile,BufRead *_spec.rb compiler rspec
-  au BufNewFile,BufRead *_spec.rb setl makeprg=rspec
-
-  " XMPFILTER https://github.com/t9md/vim-ruby-xmpfilter
-  au BufNewFile,BufRead *.rb nmap <buffer> <F5> <Plug>(xmpfilter-run)
-  au BufNewFile,BufRead *.rb xmap <buffer> <F5> <Plug>(xmpfilter-run)
-  au BufNewFile,BufRead *.rb imap <buffer> <F5> <Plug>(xmpfilter-run)
-
-  au BufNewFile,BufRead *.rb nmap <buffer> <F4> <Plug>(xmpfilter-mark)
-  au BufNewFile,BufRead *.rb xmap <buffer> <F4> <Plug>(xmpfilter-mark)
-  au BufNewFile,BufRead *.rb imap <buffer> <F4> <Plug>(xmpfilter-mark)
-
-  """"""""""""""""""""""""""""
-  " PHP
-  """"""""""""""""""""""""""""
-  au FileType php set tabstop=4 shiftwidth=4
-  au BufNewFile,BufRead *.php noremap <Leader>out :!grep -w '^[ ]*class\\|^.*function' %<cr>
-  au BufNewFile,BufRead *.php noremap <Leader>outp :!grep -w '^[ ]*class\\|^.*public.*function' %<cr>
-  au BufNewFile,BufRead *.php noremap <Leader>cs :!make cs FILE=%<cr>
-  au BufNewFile,BufRead *.php noremap <Leader>ct :!make test FILE=%<cr>
-  au BufNewFile,BufRead *.php syn match tabmala '^\s\*\t\+' | hi tabmala ctermbg=red
-  au BufNewFile,BufRead *.php hi ExtraWhitespace ctermbg=red guibg=red| match ExtraWhitespace /\s\+$\|\t/
-
-  """"""""""""""""""""""""""""
-  " Elixir
-  """"""""""""""""""""""""""""
-  au BufNewFile,BufRead *.exs noremap <Leader>r :w!<cr>:!elixir %<cr>
-  
-  " Show trailing white space
-  au BufNewFile,BufRead * syn match brancomala '\s\+$' | hi brancomala ctermbg=red
-  
-  au BufNewFile,BufRead *.json nnoremap <Leader>= :%!python -m json.tool<cr>
-  
 augroup END
-
-nnoremap <Leader>a :Ack!
 
 " Remove trailing white space
 noremap <Leader>rtws :%s/\s\+$//e<cr>
@@ -375,43 +237,8 @@ noremap <Leader>rtws :%s/\s\+$//e<cr>
 " Some stuff stolen from aurelio:
 " http://aurelio.net/doc/dotfiles/vimrc.txt
 
-" Close everything!
-inoremap <F11> <esc>:wqa!<cr>
-noremap <F11> :wqa!<cr>
-
 " Keeping myself sane
 cab W w| cab Q q| cab Wq wq| cab wQ wq| cab WQ wq
-
-" :Shell runs and command and puts its output in a new buffer
-" http://vim.wikia.com/wiki/Display_output_of_shell_commands_in_new_window
-command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
-function! s:RunShellCommand(cmdline)
-  echo a:cmdline
-  let expanded_cmdline = a:cmdline
-  for part in split(a:cmdline, ' ')
-     if part[0] =~ '\v[%#<]'
-        let expanded_part = fnameescape(expand(part))
-        let expanded_cmdline = substitute(expanded_cmdline, part, expanded_part, '')
-     endif
-  endfor
-  vsplit new
-  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
-  call setline(1, 'You entered:    ' . a:cmdline)
-  call setline(2, 'Expanded Form:  ' .expanded_cmdline)
-  call setline(3,substitute(getline(2),'.','=','g'))
-  execute '$read !'. expanded_cmdline
-  setlocal nomodifiable
-  1
-endfunction
-
-nnoremap <Leader>gac :Gwrite<CR> <bar> :Gcommit -v<CR> <bar> ,max
-
-nnoremap <Leader>spell :set spell! spell?<CR>
-
-nnoremap <Leader>vv :vsplit $MYVIMRC<cr>
-nnoremap <Leader>vl :so $MYVIMRC<cr>
-
-nnoremap <Leader>paste :set paste!<cr>
 
 if filereadable(".vim.custom")
   so .vim.custom
@@ -421,63 +248,10 @@ if filereadable("../.vim.custom")
   so ../.vim.custom
 endif
 
-nnoremap <Leader>mkdir :!mkdir -p "%:h"<cr>
-nnoremap <Leader>fixhl <Esc>:syntax sync fromstart<CR>
-
-noremap <Esc><f1> :w!<cr>
-inoremap <Esc><f1> <Esc>:w!<cr>
-noremap <Esc><f2> :wq!<cr>
-inoremap <Esc><f2> <Esc>:wq!<cr>
-noremap <Esc><f3> :q!<cr>
-inoremap <Esc><f3> <Esc>:q!<cr>
-
-noremap <Leader>nt :NERDTree<cr>
-
-function! ToggleErrors()
-    if empty(filter(tabpagebuflist(), 'getbufvar(v:val, "&buftype") is# "quickfix"'))
-         " No location/quickfix list shown, open syntastic error location panel
-         Errors
-    else
-        lclose
-    endif
-endfunction
-
-nnoremap <silent> <Leader>e  :<C-u>call ToggleErrors()<CR>
-
-noremap : ;
-noremap ; :
-noremap , _
-
 set nobackup
 set noswapfile
 
-nnoremap j gj
-nnoremap k gk
-
 set wildignore+=*.pyc
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" EXTRACT VARIABLE (SKETCHY)
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! ExtractVariable()
-    let name = input("Variable name: ")
-    if name == ''
-        return
-    endif
-    " Enter visual mode (not sure why this is needed since we're already in
-    " visual mode anyway)
-    normal! gv
-
-    " Replace selected text with the variable name
-    exec "normal c" . name
-    " Define the variable on the line above
-    exec "normal! O" . name . " = "
-    " Paste the original selected text to be the variable value
-    normal! $p
-endfunction
-vnoremap <leader>ev :call ExtractVariable()<cr>
-
 ab :shrug: ¯\_(ツ)_/¯
-
 hi IncSearch cterm=NONE ctermfg=black ctermbg=green
-
