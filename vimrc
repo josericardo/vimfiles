@@ -247,7 +247,7 @@ endif
 set nobackup
 set noswapfile
 
-set wildignore+=*.pyc
+set wildignore+=*.pyc,*/node_modules/**
 
 ab :shrug: ¯\_(ツ)_/¯
 hi IncSearch cterm=NONE ctermfg=black ctermbg=green
