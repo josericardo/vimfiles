@@ -1,6 +1,10 @@
 set nocompatible
 let mapleader=","
 
+" Per-directory .vimrc files
+set exrc
+set secure
+
 """"""""""""""""""""""""""""""""""""""""
 " Vundle Setup
 """"""""""""""""""""""""""""""""""""""""
