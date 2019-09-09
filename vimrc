@@ -19,8 +19,11 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'mhinz/vim-signify'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rhubarb' " for :Gbrowse
+Plugin 'posva/vim-vue'
 call vundle#end()
 
 filetype plugin indent on    " required
