@@ -225,6 +225,12 @@ augroup IDE
       \ set iskeyword+=. \|
       \ execute "!pydoc " . expand("<cword>") \|
       \ let &iskeyword = save_isk<CR>
+
+  """"""""""""""""""""""""""""
+  " YAML
+  """"""""""""""""""""""""""""
+  au BufNewFile,BufRead *.yaml,*.yml setl makeprg=yamllint
+  let g:syntastic_yaml_checkers=['yamllint']
 augroup END
 
 " Remove trailing white space
